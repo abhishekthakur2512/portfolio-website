@@ -1,0 +1,109 @@
+
+.body {
+	background-image: 
+			linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+	/* url(../../images/2.jpg); */
+	url(../../images/1.jpg);
+	background-size: cover;
+	/* overflow:hidden; */
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	--def: rgb(0, 0, 0); 	
+	--inv: #fff;
+}
+
+
+.particle {
+	background: transparent;
+  overflow: auto;
+  position: absolute;
+  height:100%;
+  width:100%;
+}
+
+.profile-image {
+	/* background-image: linear-gradient(transparent, transparent 75%), url("../../images/profile_pic.jpg");
+	background-size:cover;
+	display: block; */
+	object-fit: cover;
+	border-radius:50%;
+	margin-top:150px;
+	margin-left:50%;
+	transform: translate(-50%);
+	width: 170px;
+	height: 170px;
+	display: "inline-block";
+	position: relative;
+}
+
+/* Button Animations */
+
+.btn {		
+	position: relative;	
+	padding: 0.5rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	font-size: 0.9rem;
+	font-family: "Helvetica";
+	color: var(--inv);
+	transition: all 500ms;	
+	cursor: pointer;
+	user-select: none;
+	margin:0.5rem;
+	margin-top:3rem;
+}
+
+.btn:before, .btn:after {
+	content: '';
+	position: absolute;	
+	transition: inherit;
+	z-index: -1;
+}
+
+.btn:hover {
+	color: var(--def);
+	transition-delay: .5s;
+}
+
+.btn:hover:before {
+	transition-delay: 0s;
+}
+
+.btn:hover:after {
+	background: var(--inv);
+	transition-delay: .35s;
+}
+
+/* From Top */
+
+.from-top:before, 
+.from-top:after {
+	left: 0;
+	height: 0;
+	width: 100%;
+}
+
+.from-top:before {
+	bottom: 0;	
+	border: 0.5px solid var(--inv);
+	border-top: 0;
+	border-bottom: 0;
+}
+
+.from-top:after {
+	top: 0;
+	height: 0;
+}
+
+.from-top:hover:before,
+.from-top:hover:after {
+	height: 100%;
+}
+
+/* Button Animations end */
+
+/* Background animation */
+
+
+/* Background Animation */
