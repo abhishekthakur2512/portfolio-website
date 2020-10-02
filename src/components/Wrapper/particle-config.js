@@ -49,7 +49,7 @@ module.exports = {
         "enable": true,
         "distance": 176.3753266952075,
         "color": "#ffffff",
-        "opacity": 0.2,
+        "opacity": 0.3,
         "width": 1
       },
       "move": {
@@ -75,14 +75,14 @@ module.exports = {
           "mode": "grab"
         },
         "onclick": {
-          "enable": true,
+          "enable": false,
           "mode": "push"
         },
-        "resize": true
+        "resize": false
       },
       "modes": {
         "grab": {
-          "distance": 400,
+          "distance": 200,
           "line_linked": {
             "opacity": 1
           }

@@ -10,10 +10,14 @@
     "howler": "^2.2.0",
     "particlesjs": "^2.2.3",
     "react": "^16.13.1",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-howler": "^3.8.0",
     "react-particles-js": "^3.3.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-spring": "^8.0.27",
+    "react-tooltip": "^4.2.9",
+    "react-transition-group": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

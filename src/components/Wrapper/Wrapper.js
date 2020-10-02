@@ -1,97 +1,93 @@
-import React, { Component } from 'react';
-import {Howl, Howler} from 'howler';
+import React, { useState } from 'react';
 import ReactHowler from 'react-howler'
-
+import { Particles } from "react-particles-js";
+import { CSSTransition } from 'react-transition-group';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
 
-import "./styles.css";
-
-import profile_pic from "../../images/profile_pic.jpg"
-// import background from "../../images/background.jpg"
-// import background_music from "../../media/bg-music.mp3";
 import particle from './particle-config';
 import particle2 from './particle-config-2';
+import particle_snow from './particle_snow';
 
-import { Particles } from "react-particles-js";
+import "./styles.css";
+import bg_music from '../../media/bg_music_4.mp3'
 
-import bg_music from '../../media/bg-music-2.mp3'
 
-console.log(particle);
+import Footer from '../Footer/Footer'
+import Home from '../Home/Home'
+import AboutMe from '../AboutMe/AboutMe'
 
-const sound = new Howl({
-    src: [{bg_music}],
-    autoplay:true,
-    loop:true,
-    volume: 0.5,
-    onend: function() {
-        console.log('Finished!');
+function Wrapper() {
+    const [componentState, setComponentState] = useState('home');
+    const [homePageCss, setHomePageCss] = useState('body_art');
+    const [particleState, setParticleState] = useState(particle);
+    const [inProp, setInPropState] = useState(false);
+    function ComponentSelect() {
+        switch(componentState) {
+            case 'home': 
+                return <Home/>
+            case 'aboutMe':
+                return <AboutMe/>
+            default: 
+                return <></>
+        }
     }
-});
 
-class Wrapper extends Component {
-    
-    constructor(props) {
-        super(props);
-        console.log('hello');
-        console.log('s');
-        sound.play(1);
+    function setPageState(pageState) {
+        switch(pageState) {
+            case 'home': 
+                setComponentState('home');
+                setHomePageCss('body_art');
+                setParticleState(particle);
+                setInPropState(isHomePageCheck);
+                break;
+            case 'aboutMe':
+                setComponentState('aboutMe');
+                setHomePageCss('body_plain')
+                setParticleState(particle_snow);
+                setInPropState(isHomePageCheck);
+        }
     }
-    
-    render () {
-        return (
-            <React.Fragment>
-            <div className = 'body'>
-                <Particles 
-                    className='particle'
-                    params={particle}
-                />
-                <div style={{width:"100%", position: 'absolute'}}>
-                    <div style= {{position:'static'}}>
-                        <AppBar style={{ position:'fixed', alignItems:'center', background: 'transparent', boxShadow: 'none'}}>
-                            <Toolbar>
-                                    <div className="btn from-top">HOME</div>
-                                    <div className="btn from-top">BLOG</div>
-                                    <div className="btn from-top">ABOUT ME</div>
-                                    <div className="btn from-top">RESUME</div>
-                            </Toolbar>
-                        </AppBar>
-                    </div>
-                    <img src={profile_pic} alt="profile" className='profile-image'></img>
-                    <p style= {{textAlign:"center", color:"white", margin:"0em", marginTop:"1em", fontSize:"50px"}}>Hi, I'm Abhishek Thakur.</p>
-                    <p style= {{textAlign:"center", color:"grey", fontSize:"15px"}}>Software Developer @UrbanCompany (formely UrbanClap)</p>
-                    <hr style={{width:"50%", align: "center"}}/> 
-                    
-                </div>
-                
-                <ReactHowler
-                    src={bg_music}
-                    playing={true}
-                    preLoad={true}
-                    loop={true}
-                    // ref={(ref) => (this.player = ref)}
-                />
-            </div>
-            </React.Fragment>
+
+    function isHomePageCheck() {
+        if(componentState == 'home') {
+            return true;
+        }
+        return false;
+    }
+
+    function isAboutMeCheck() {
+        if(componentState == 'aboutMe') return true;
+        return false;
+    }
+
+    const isHomePage = isHomePageCheck();
+    return (
+        <div className = {homePageCss}>
+            <Particles className='particle' params={particleState} />
             
-        )
-    }   
+            <ReactHowler src={bg_music} playing={false} preLoad={true} loop={true} />
+
+                <div style={{width:"100%"}}>
+                    <AppBar style={{ position:'relative', alignItems:'center', background: 'transparent', boxShadow: 'none'}}>
+                        <Toolbar>
+                                <button className="btn from-top" onClick = { () => {setPageState('home')} } >HOME</button>
+                                <button className="btn from-top" onClick = { () => {setPageState('blog')} } >BLOG</button>
+                                <button className="btn from-top" onClick = { () => {setPageState('aboutMe')} } >ABOUT ME</button>
+                                <button className="btn from-top" onClick = { () => {setPageState('home')} } >RESUME</button>
+                        </Toolbar>
+                    </AppBar>
+                </div>
+
+            <CSSTransition in={inProp} timeout={2000} classNames="my-node">
+                <ComponentSelect/>
+            </CSSTransition>
+
+            <Footer/>
+        </div>
+    )
 }
 
 export default Wrapper
 
-/* <AppBar position = "static" style={{ background: 'transparent', boxShadow: 'none', alignItems: 'center' }}>
-                <Toolbar>
-                        <div className="btn from-top">HOME</div>
-                        <div className="btn from-top">BLOG</div>
-                        <div className="btn from-top">ABOUT ME</div>
-                        <div className="btn from-top">RESUME</div>
-                </Toolbar>
-                </AppBar>
-        
-                <div src={profile_pic} class='profile-image'/>
-    
-                <p style= {{textAlign:"center", color:"white", margin:"0em", marginTop:"1em", fontSize:"50px"}}>Hi, I'm Abhishek Thakur.</p>
-                <p style= {{textAlign:"center", color:"grey", fontSize:"15px"}}>Software Developer @UrbanCompany (formely UrbanClap)</p>
-                <hr style={{width:"50%", align: "center"}}/> */
+// onCopy={() => this.setState({copied: true})}

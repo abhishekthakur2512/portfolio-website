@@ -89,7 +89,7 @@ module.exports = {
       },
       "bubble": {
         "distance": 400,
-        "size": 4,
+        "size": 5,
         "duration": 0.3,
         "opacity": 0.1,
         "speed": 3

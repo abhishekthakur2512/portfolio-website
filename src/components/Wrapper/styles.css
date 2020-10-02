@@ -1,40 +1,33 @@
 
-.body {
+.body_art {
 	background-image: 
 			linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
 	/* url(../../images/2.jpg); */
 	url(../../images/1.jpg);
 	background-size: cover;
-	/* overflow:hidden; */
 	position: absolute;
 	width: 100%;
-	height: 100%;
+	height: 750px;
+	--def: rgb(0, 0, 0); 	
+	--inv: #fff;
+}
+
+.body_plain {
+	background-color: rgb(21, 21, 21);
+	height: auto;
+	width: 100%;
+	position: absolute;
 	--def: rgb(0, 0, 0); 	
 	--inv: #fff;
 }
 
 
 .particle {
-	background: transparent;
-  overflow: auto;
+	/* background: transparent; */
+  overflow-y: auto;
   position: absolute;
   height:100%;
   width:100%;
-}
-
-.profile-image {
-	/* background-image: linear-gradient(transparent, transparent 75%), url("../../images/profile_pic.jpg");
-	background-size:cover;
-	display: block; */
-	object-fit: cover;
-	border-radius:50%;
-	margin-top:150px;
-	margin-left:50%;
-	transform: translate(-50%);
-	width: 170px;
-	height: 170px;
-	display: "inline-block";
-	position: relative;
 }
 
 /* Button Animations */
@@ -46,6 +39,9 @@
 	padding-right: 1.5rem;
 	font-size: 0.9rem;
 	font-family: "Helvetica";
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	outline: none;
 	color: var(--inv);
 	transition: all 500ms;	
 	cursor: pointer;
@@ -56,7 +52,7 @@
 
 .btn:before, .btn:after {
 	content: '';
-	position: absolute;	
+	position: absolute;		
 	transition: inherit;
 	z-index: -1;
 }
@@ -86,7 +82,7 @@
 
 .from-top:before {
 	bottom: 0;	
-	border: 0.5px solid var(--inv);
+	border: 0px solid var(--inv);
 	border-top: 0;
 	border-bottom: 0;
 }
@@ -101,9 +97,37 @@
 	height: 100%;
 }
 
-/* Button Animations end */
+/* images */
 
-/* Background animation */
+.profile-image {
+	object-fit: cover;
+	border-radius:50%;
+	margin-left:50%;
+	transform: translate(-50%);
+	width: 170px;
+	height: 170px;
+}
 
+.contact-logo {
+	cursor: pointer;
+	position: relative;
+	height: 20px;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
 
-/* Background Animation */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 2000ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 2000ms;
+}
