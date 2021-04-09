@@ -1,0 +1,45 @@
+.about_me_heading {
+  /* background-color: rgb(white,white, white, 0.5); */
+  color: rgb(234, 223, 171);
+  text-align: center;
+  font: 100;
+  font-size: 50px;
+}
+
+.about_me_content_wrapper {
+  display: flex;
+  color: rgb(234, 223, 171);
+  text-align: center;
+  flex-wrap: nowrap;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+  /* line-height: 75px; */
+}
+
+.about_me_pic {
+  object-fit: cover;
+  /* transform: translate(50%); */
+  /* justify-content: center; */
+	width: 250px;
+  height: 300px;
+  padding: 10px;
+}
+
+.about_me_content_write {
+  color: rgb(234, 223, 171);
+  max-width: 600px;
+  line-height: 20px;
+  padding: 20px
+}
+
+.check1 {
+ background-color: red;
+ width:auto;
+ height:auto;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
