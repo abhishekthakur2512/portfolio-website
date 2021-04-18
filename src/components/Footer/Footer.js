@@ -37,7 +37,7 @@ function Footer() {
 
   
   return (
-    <div style = {contact_logo}>
+    <div style = {{textAlign: 'center', marginBottom: '1rem'}}>
       <hr style={{width:"50%", align: "center", marginTop: '50px'}}/> 
       
       {/* LinkedIn */}
