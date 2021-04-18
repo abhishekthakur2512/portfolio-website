@@ -78,17 +78,16 @@ function Wrapper() {
             <CSSTransition in={inProp} timeout={2000} classNames="my-node">
                 <ComponentSelect/>
             </CSSTransition>
-
+                <div style = {{textAlign: 'center'}}>
+                    <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none', opacity: 0.5}}>
+                        {
+                            isMute ? 
+                            <img src = {mute} className='mute-logo'></img> :
+                            <img src = {volume_up} className='mute-logo'></img>
+                        }
+                    </button>
+                </div>
             <Footer/>
-            <div style = {{textAlign: 'center'}}>
-                <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none'}}>
-                    {
-                        isMute ? 
-                        <img src = {mute} className='mute-logo'></img> :
-                        <img src = {volume_up} className='mute-logo'></img>
-                    }
-                </button>
-            </div>
         </div>
     )
 }
