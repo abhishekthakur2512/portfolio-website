@@ -7,7 +7,7 @@ function Home() {
   return (
     <div style= {{marginTop: '50px'}}>
       <div style= {{textAlign: 'center'}}>
-        <img src={profile_pic} className='profile-image'></img>
+        <img src={profile_pic} className='profile-image' alt = {profile_pic}></img>
       </div>
       <p className = 'name_heading' style = {name_heading}>Hi, I'm Abhishek Thakur</p>
       <p style= {designation}>Software Developer @UrbanCompany (formely UrbanClap)</p>

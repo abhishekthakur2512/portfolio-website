@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import ReactHowler from 'react-howler'
 import { Particles } from "react-particles-js";
 import { CSSTransition } from 'react-transition-group';
-import { mute_button } from '../Constants_style';
+// import { mute_button } from '../Constants_style';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import volume_up from '../../images/volume_up.png';
 import mute from '../../images/mute.png';
 
 import particle from './particle-config';
-import particle2 from './particle-config-2';
+// import particle2 from './particle-config-2';
 import particle_snow from './particle_snow';
 
 import "./styles.css";
@@ -50,13 +50,15 @@ function Wrapper() {
                 setHomePageCss('body_plain')
                 setParticleState(particle_snow);
                 setInPropState(isHomePageCheck);
+                break;
+            default: 
+                break;
         }
     }
 
     function handleMuteToggle() { setIsMute(!isMute); }
 
-    function isHomePageCheck() { return (componentState == 'home' && true ) }
-    const isHomePage = isHomePageCheck();
+    function isHomePageCheck() { return (componentState === 'home' && true ) }
 
     return (
         <div className = {homePageCss}>
@@ -82,8 +84,8 @@ function Wrapper() {
                     <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none', opacity: 0.5}}>
                         {
                             isMute ? 
-                            <img src = {mute} className='mute-logo'></img> :
-                            <img src = {volume_up} className='mute-logo'></img>
+                            <img src = {mute} className='mute-logo' alt = {mute}></img> :
+                            <img src = {volume_up} className='mute-logo' alt = {volume_up}></img>
                         }
                     </button>
                 </div>

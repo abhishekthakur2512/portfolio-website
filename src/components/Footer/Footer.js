@@ -5,8 +5,8 @@ import instagram_logo from '../../images/instagram_logo.png';
 import email_logo from '../../images/email_logo.png';
 import ReactTooltip from "react-tooltip";
 
-import { name_heading, designation, contact_logo } from '../Constants_style';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+// import { name_heading, designation, contact_logo } from '../Constants_style';
+// import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 function Footer() {
@@ -42,26 +42,26 @@ function Footer() {
       
       {/* LinkedIn */}
       <button  onClick = {handleLinkedInClick}  data-tip data-for="linkedin" style= {{background: 'transparent', border: 'none', outline: 'none'}}>
-        <img src={ linkedin_logo } className='contact-logo'></img>
+        <img src={ linkedin_logo } className='contact-logo' alt = {phone_logo}></img>
       </button>
       <ReactTooltip id="linkedin" border='none' place="bottom" effect="solid">linkedin.com/in/abhishekthakur3</ReactTooltip>
 
       {/* Phone Number */}
       <button onClick = {handlePhoneClick} data-tip data-for="phone" style= {{background: 'transparent', border: 'none', outline: 'none'}}>
-        <img src={ phone_logo } className='contact-logo'></img>
+        <img src={ phone_logo } className='contact-logo' alt = {phone_logo}></img>
       </button>
       <ReactTooltip id="phone" place="bottom" effect="solid">
         { isPhoneCopied ? 'Copied!': '+91 7838150052' }
       </ReactTooltip>
 
       {/* Instagram */}
-      <button onClick = {handleInstagramClick} data-tip data-for="instagram" style= {{background: 'transparent', border: 'none', outline: 'none'}}><img src={ instagram_logo } className='contact-logo'></img></button>
+      <button onClick = {handleInstagramClick} data-tip data-for="instagram" style= {{background: 'transparent', border: 'none', outline: 'none'}}><img src={ instagram_logo } className='contact-logo' alt = {phone_logo}></img></button>
       <ReactTooltip id="instagram" place="bottom" effect="solid">
         { isInstagramCopied ? 'Copied!': 'shakethefriess' }
       </ReactTooltip>
 
       {/* Email */}
-      <button onClick = {handleEmailClick} data-tip data-for="email" style= {{background: 'transparent', border: 'none', outline: 'none'}}><img src={ email_logo } className='contact-logo'></img></button>
+      <button onClick = {handleEmailClick} data-tip data-for="email" style= {{background: 'transparent', border: 'none', outline: 'none'}}><img src={ email_logo } className='contact-logo' alt = {phone_logo}></img></button>
       <ReactTooltip id="email" place="bottom" effect="solid">
         { isEmailCopied ? 'Copied!': 'abhishekthakur251296@gmail.com' }
       </ReactTooltip>
