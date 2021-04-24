@@ -80,6 +80,7 @@ function Wrapper() {
             <CSSTransition in={inProp} timeout={2000} classNames="my-node">
                 <ComponentSelect/>
             </CSSTransition>
+            
                 <div style = {{textAlign: 'center'}}>
                     <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none', opacity: 0.5}}>
                         {
