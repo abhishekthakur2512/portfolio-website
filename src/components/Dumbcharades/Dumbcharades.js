@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { GAME_BUTTON_STYLE } from './Constants';
-// import profile_pic from "../../images/profile_pic.jpg"
 import Switch from "react-switch";
 
 import './style.css';
 import {STYLE_MOVIE} from './Constants';
-import { csv } from 'd3';
 import { EASY_MOVIES, HARD_MOVIES } from './movie_set';
 
 
@@ -41,7 +38,7 @@ function Dumbcharades() {
       <div style = {{marginBottom: '1rem'}}>
         <text style = {{color: 'white', fontSize: '1.5rem'}}>{movieObject.year}</text><br/>
       </div>
-      <img src = {movieObject.posterurl} style = {STYLE_MOVIE}></img>
+      <img src = {movieObject.posterurl} style = {STYLE_MOVIE} alt = {movieObject.posterurl}></img>
     </div>
     )
 }

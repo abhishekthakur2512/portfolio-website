@@ -1,7 +1,5 @@
 /* Texts Style */
 
-import { rgbToHex } from "@material-ui/core";
-
 export const name_heading = {
   color: "white",
   margin: "0em",

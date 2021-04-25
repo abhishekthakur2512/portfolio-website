@@ -1,8 +1,6 @@
 import React from 'react';
 import profile_pic from "../../images/profile_pic.jpg"
 import { name_heading, designation } from '../Constants_style';
-import ReactHowler from 'react-howler'
-import bg_music from '../../media/bg_music_3.mp3'
 
 
 

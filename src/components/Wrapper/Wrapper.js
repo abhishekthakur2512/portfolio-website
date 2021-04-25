@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import ReactHowler from 'react-howler'
 import { Particles } from "react-particles-js";
 import { CSSTransition } from 'react-transition-group';
@@ -75,7 +75,7 @@ function Wrapper() {
         <div className = {homePageCss}>
         <Particles className='particle' params={particleState} />
         <Router>
-        {/* <ReactHowler src={bg_music} playing={!isMute && true} preLoad={true} loop={true} /> */}
+        <ReactHowler src={bg_music} playing={!isMute && true} preLoad={true} loop={true} />
 
         <div style={{width:"100%"}}>
             <AppBar style={{ position:'relative', alignItems:'center', background: 'transparent', boxShadow: 'none'}}>
