@@ -1,0 +1,23 @@
+
+.game_btn {
+    position: relative;	
+    padding: 0.5rem;
+    font-family: var(--def);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 0.9rem;
+    /* background-color: '#000000'; */
+    background-color: rgb(227, 70, 96);
+    border: none;
+    outline: none;
+    color: var(--inv);
+    cursor: pointer;
+    user-select: none;
+    margin:0.5rem;
+    margin-top:3rem;
+}
+
+.toggleButton {
+    margin: '10px';
+    color: 'red';
+}
