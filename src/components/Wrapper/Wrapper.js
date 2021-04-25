@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactHowler from 'react-howler'
 import { Particles } from "react-particles-js";
 import { CSSTransition } from 'react-transition-group';
@@ -72,36 +73,40 @@ function Wrapper() {
 
     return (
         <div className = {homePageCss}>
-            <Particles className='particle' params={particleState} />
-            
-            <ReactHowler src={bg_music} playing={!isMute && true} preLoad={true} loop={true} />
+        <Particles className='particle' params={particleState} />
+        <Router>
+        {/* <ReactHowler src={bg_music} playing={!isMute && true} preLoad={true} loop={true} /> */}
 
-                <div style={{width:"100%"}}>
-                    <AppBar style={{ position:'relative', alignItems:'center', background: 'transparent', boxShadow: 'none'}}>
-                        <Toolbar>
-                            <button className="btn from-top" onClick = { () => {setPageState('home')} } >H O M E</button>
-                            {/* <button className="btn from-top" onClick = { () => {setPageState('blog')} } >B L O G</button> */}
-                            <button className="btn from-top" onClick = { () => {setPageState('aboutMe')} } >A B O U T&nbsp;&nbsp;&nbsp; M E</button>
-                            <button className="btn from-top" onClick = { () => {setPageState('home')} } >R E S U M E</button>
-                            <button className="btn from-top" onClick = { () => {setPageState('game')} } >G A M E</button>
-                        </Toolbar>
-                    </AppBar>
-                </div>
+        <div style={{width:"100%"}}>
+            <AppBar style={{ position:'relative', alignItems:'center', background: 'transparent', boxShadow: 'none'}}>
+                <Toolbar>
+                    <button className="btn from-top" onClick = { () => {setPageState('home')} } >H O M E</button>
+                    {/* <button className="btn from-top" onClick = { () => {setPageState('blog')} } >B L O G</button> */}
+                    <button className="btn from-top" onClick = { () => {setPageState('aboutMe')} } >A B O U T&nbsp;&nbsp;&nbsp; M E</button>
+                    <button className="btn from-top" onClick = { () => {setPageState('home')} } >R E S U M E</button>
+                    <button className="btn from-top" onClick = { () => {setPageState('game')} } >G A M E</button>
+                </Toolbar>
+            </AppBar>
+        </div>
 
-            <CSSTransition in={inProp} timeout={2000} classNames="my-node">
-                <ComponentSelect/>
-            </CSSTransition>
+        <Route path = "/dumbcharades" exact component = {Dumbcharades}/>
 
-                <div style = {{textAlign: 'center', marginTop: '1rem'}}>
-                    <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none', opacity: 0.5}}>
-                        {
-                            isMute ? 
-                            <img src = {mute} className='mute-logo' alt = {mute}></img> :
-                            <img src = {volume_up} className='mute-logo' alt = {volume_up}></img>
-                        }
-                    </button>
-                </div>
-            <Footer/>
+        <CSSTransition in={inProp} timeout={2000} classNames="my-node">
+            <ComponentSelect/>
+        </CSSTransition>
+
+        <div style = {{textAlign: 'center', marginTop: '1rem'}}>
+            <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none', opacity: 0.5}}>
+                {
+                    isMute ? 
+                    <img src = {mute} className='mute-logo' alt = {mute}></img> :
+                    <img src = {volume_up} className='mute-logo' alt = {volume_up}></img>
+                }
+            </button>
+        </div>
+
+        <Footer/>
+        </Router>
         </div>
     )
 }
