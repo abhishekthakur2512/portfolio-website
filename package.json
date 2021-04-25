@@ -7,6 +7,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "d3": "^6.7.0",
+    "fs": "0.0.1-security",
+    "get-line": "^0.1.2",
     "howler": "^2.2.0",
     "particlesjs": "^2.2.3",
     "react": "^16.13.1",
@@ -17,6 +20,7 @@
     "react-reveal": "^1.2.2",
     "react-scripts": "3.4.3",
     "react-spring": "^8.0.27",
+    "react-switch": "^6.0.0",
     "react-tooltip": "^4.2.9",
     "react-transition-group": "^4.4.1"
   },

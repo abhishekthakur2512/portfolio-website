@@ -28,6 +28,8 @@ function Wrapper() {
     const [inProp, setInPropState] = useState(false);
     const [isMute, setIsMute] = useState(false);
     function ComponentSelect() {
+        return <Dumbcharades/>
+
         switch(componentState) {
             case 'home': 
                 return <Home/>
@@ -74,7 +76,7 @@ function Wrapper() {
         <div className = {homePageCss}>
             <Particles className='particle' params={particleState} />
             
-            <ReactHowler src={bg_music} playing={!isMute && true} preLoad={true} loop={true} />
+            <ReactHowler src={bg_music} playing={!isMute && false} preLoad={true} loop={true} />
 
                 <div style={{width:"100%"}}>
                     <AppBar style={{ position:'relative', alignItems:'center', background: 'transparent', boxShadow: 'none'}}>
@@ -92,7 +94,7 @@ function Wrapper() {
                 <ComponentSelect/>
             </CSSTransition>
 
-                <div style = {{textAlign: 'center'}}>
+                <div style = {{textAlign: 'center', marginTop: '1rem'}}>
                     <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none', opacity: 0.5}}>
                         {
                             isMute ? 
