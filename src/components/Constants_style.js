@@ -1,5 +1,7 @@
 /* Texts Style */
 
+import { rgbToHex } from "@material-ui/core";
+
 export const name_heading = {
   color: "white",
   margin: "0em",
@@ -33,3 +35,20 @@ export const mute_button = {
   align: 'center',
   height: 20
 }
+
+export const COLOR_THEME = {
+  'THEME_RED': {
+    PRIMARY: '#e34660',
+    PRIMARY_LIGHT: '',
+    PRIMARY_DARK: '',
+    SECONDARY: '#810000',
+    SECONDARY_LIGHT: '',
+    SECONDARY_DARK: '',
+    TEXT: '#FFFFFF',
+    BACKGROUND: '#1c080b',
+    BLACK: '#000B19',
+    WHITE: '#FFFFFF'
+  }
+}
+
+export const GAME_COLOR_SCHEME = COLOR_THEME['THEME_RED'];

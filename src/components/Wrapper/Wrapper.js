@@ -19,6 +19,7 @@ import bg_music from '../../media/bg_music_3.mp3'
 import Footer from '../Footer/Footer'
 import Home from '../Home/Home'
 import AboutMe from '../AboutMe/AboutMe'
+import Dumbcharades from '../Dumbcharades/Dumbcharades'
 
 function Wrapper() {
     const [componentState, setComponentState] = useState('home');
@@ -32,6 +33,8 @@ function Wrapper() {
                 return <Home/>
             case 'aboutMe':
                 return <AboutMe/>
+            case 'game':
+                return <Dumbcharades/>
             default: 
                 return <></>
         }
@@ -50,6 +53,13 @@ function Wrapper() {
                 setHomePageCss('body_plain')
                 setParticleState(particle_snow);
                 setInPropState(isHomePageCheck);
+                break;
+            case 'game': 
+                setComponentState('game');
+                setHomePageCss('body_plain')
+                setParticleState(particle_snow)
+                setInPropState(isHomePageCheck)
+                setIsMute(true)
                 break;
             default: 
                 break;
@@ -70,9 +80,10 @@ function Wrapper() {
                     <AppBar style={{ position:'relative', alignItems:'center', background: 'transparent', boxShadow: 'none'}}>
                         <Toolbar>
                             <button className="btn from-top" onClick = { () => {setPageState('home')} } >H O M E</button>
-                            <button className="btn from-top" onClick = { () => {setPageState('blog')} } >B L O G</button>
+                            {/* <button className="btn from-top" onClick = { () => {setPageState('blog')} } >B L O G</button> */}
                             <button className="btn from-top" onClick = { () => {setPageState('aboutMe')} } >A B O U T&nbsp;&nbsp;&nbsp; M E</button>
                             <button className="btn from-top" onClick = { () => {setPageState('home')} } >R E S U M E</button>
+                            <button className="btn from-top" onClick = { () => {setPageState('game')} } >G A M E</button>
                         </Toolbar>
                     </AppBar>
                 </div>
@@ -80,7 +91,7 @@ function Wrapper() {
             <CSSTransition in={inProp} timeout={2000} classNames="my-node">
                 <ComponentSelect/>
             </CSSTransition>
-            
+
                 <div style = {{textAlign: 'center'}}>
                     <button onClick = {handleMuteToggle} style= {{background: 'transparent', border: 'none', outline: 'none', opacity: 0.5}}>
                         {
