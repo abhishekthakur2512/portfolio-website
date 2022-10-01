@@ -3,7 +3,8 @@ import React  from 'react';
 function UCTest() {
   
   const openNewPage = () => {
-    window.open("https://partnerapp.urbanclap.com/startJobTrainingCompleted");
+    // window.open("https://partnerapp.urbanclap.com/startJobTrainingCompleted");
+    window.open("https://partnerapp.urbanclap.com/testAppTraining");
     // window.open("https://partnerapp.urbanclap.com/calendarTrainingCompleted");
   };
 
