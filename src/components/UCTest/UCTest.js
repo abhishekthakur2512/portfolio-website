@@ -5,8 +5,8 @@ function UCTest() {
   const openNewPage = () => {
     // window.open("https://partnerapp.urbanclap.com/startJobTrainingCompleted");
     // window.open("https://partnerapp.urbanclap.com/referral-jackpot");
-    // window.open("https://partnerapp.urbanclap.com/calendarTrainingCompleted");
-    window.open("ucprovider://open");
+    window.open("https://partnerapp.urbanclap.com/calendarTrainingCompleted");
+    // window.open("ucprovider://open");
   };
 
     return (
