@@ -26,7 +26,7 @@ function Footer() {
   }
 
   const handleInstagramClick = () => {
-    navigator.clipboard.writeText('shakethefriess');
+    navigator.clipboard.writeText('thaaakiii');
     setIsInstagramCopied(true);
   }
 
@@ -57,7 +57,7 @@ function Footer() {
       {/* Instagram */}
       <button onClick = {handleInstagramClick} data-tip data-for="instagram" style= {{background: 'transparent', border: 'none', outline: 'none'}}><img src={ instagram_logo } className='contact-logo' alt = {phone_logo}></img></button>
       <ReactTooltip id="instagram" place="bottom" effect="solid">
-        { isInstagramCopied ? 'Copied!': 'shakethefriess' }
+        { isInstagramCopied ? 'Copied!': 'thaaakiii' }
       </ReactTooltip>
 
       {/* Email */}

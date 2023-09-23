@@ -14,7 +14,7 @@ import particle from './particle-config';
 import particle_snow from './particle_snow';
 
 import "./styles.css";
-import bg_music from '../../media/bg_music_3.mp3'
+import bg_music from '../../media/bg_music.mp3'
 
 
 import Footer from '../Footer/Footer'
@@ -74,7 +74,6 @@ function Wrapper() {
     return (
         <div className = {homePageCss}>
         <Particles className='particle' params={particleState} />
-        <Router>
         <ReactHowler src={bg_music} playing={!isMute && true} preLoad={true} loop={true} />
 
         <div style={{width:"100%"}}>
@@ -88,8 +87,6 @@ function Wrapper() {
                 </Toolbar>
             </AppBar>
         </div>
-
-        <Route path = "/dumbcharades" exact component = {Dumbcharades}/>
 
         <CSSTransition in={inProp} timeout={2000} classNames="my-node">
             <ComponentSelect/>
@@ -106,7 +103,7 @@ function Wrapper() {
         </div>
 
         <Footer/>
-        </Router>
+        {/* </Router> */}
         </div>
     )
 }
