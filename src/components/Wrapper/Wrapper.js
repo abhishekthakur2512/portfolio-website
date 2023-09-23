@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
 import ReactHowler from 'react-howler'
 import { Particles } from "react-particles-js";
 import { CSSTransition } from 'react-transition-group';
