@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 import ReactHowler from 'react-howler'
-import { Particles } from "react-particles-js";
+// import { Particles } from "react-particles";
 import { CSSTransition } from 'react-transition-group';
 // import { mute_button } from '../Constants_style';
 import AppBar from '@material-ui/core/AppBar';
@@ -25,7 +25,7 @@ import Dumbcharades from '../Dumbcharades/Dumbcharades'
 function Wrapper() {
     const [componentState, setComponentState] = useState('home');
     const [homePageCss, setHomePageCss] = useState('body_art');
-    const [particleState, setParticleState] = useState(particle);
+    // const [particleState, setParticleState] = useState(particle);
     const [inProp, setInPropState] = useState(false);
     const [isMute, setIsMute] = useState(false);
     function ComponentSelect() {
@@ -46,19 +46,19 @@ function Wrapper() {
             case 'home': 
                 setComponentState('home');
                 setHomePageCss('body_art');
-                setParticleState(particle);
+                // setParticleState(particle);
                 setInPropState(isHomePageCheck);
                 break;
             case 'aboutMe':
                 setComponentState('aboutMe');
                 setHomePageCss('body_plain')
-                setParticleState(particle_snow);
+                // setParticleState(particle_snow);
                 setInPropState(isHomePageCheck);
                 break;
             case 'game': 
                 setComponentState('game');
                 setHomePageCss('body_plain')
-                setParticleState(particle_snow)
+                // setParticleState(particle_snow)
                 setInPropState(isHomePageCheck)
                 setIsMute(true)
                 break;
@@ -73,7 +73,7 @@ function Wrapper() {
 
     return (
         <div className = {homePageCss}>
-        <Particles className='particle' params={particleState} />
+        {/* <Particles className='particle' params={particleState} /> */}
         <ReactHowler src={bg_music} playing={!isMute && true} preLoad={true} loop={true} />
 
         <div style={{width:"100%"}}>
