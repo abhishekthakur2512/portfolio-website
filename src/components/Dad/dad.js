@@ -5,7 +5,7 @@ import _ from "lodash";
 export default function JobScheduler() {
   const [n, setN] = useState(9);
   const [schedule, setSchedule] = useState([]);
-  const [workHours, setWorkHours] = useState([]);
+  // const [workHours, setWorkHours] = useState([]);
   const [workerSchedules, setWorkerSchedules] = useState({});
   const [warning, setWarning] = useState("");
 
@@ -71,7 +71,7 @@ export default function JobScheduler() {
     }
     
     setSchedule(schedule);
-    setWorkHours(Object.entries(hoursWorked).map(([employee, hours]) => ({ employee, hours })));
+    // setWorkHours(Object.entries(hoursWorked).map(([employee, hours]) => ({ employee, hours })));
     setWorkerSchedules(workerSchedules);
   };
 
