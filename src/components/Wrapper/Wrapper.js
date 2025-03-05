@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import ReactHowler from 'react-howler'
-import { Particles } from "react-particles-js";
+import Particles from "react-particles";
 import { CSSTransition } from 'react-transition-group';
 // import { mute_button } from '../Constants_style';
 import AppBar from '@material-ui/core/AppBar';
@@ -88,6 +88,8 @@ function Wrapper() {
             </AppBar>
         </div>
 
+        <Routes> <Route path = "/dumbcharades" exact component = {Dumbcharades}/> </Routes>
+
         <CSSTransition in={inProp} timeout={2000} classNames="my-node">
             <ComponentSelect/>
         </CSSTransition>
@@ -103,11 +105,8 @@ function Wrapper() {
         </div>
 
         <Footer/>
-        {/* </Router> */}
         </div>
     )
 }
 
-export default Wrapper
-
-// onCopy={() => this.setState({copied: true})}
+export default Wrapper;
