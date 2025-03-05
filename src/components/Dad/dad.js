@@ -92,99 +92,217 @@ export default function JobScheduler() {
   
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-xl p-8">
-        <h1 className="text-3xl font-extrabold text-center mb-8 text-blue-600">Job Scheduler</h1>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
-          <div className="flex items-center gap-2">
-            <label className="font-semibold text-lg">Number of Employees:</label>
+    <div style={{ padding: "1.5rem", backgroundColor: "#f7fafc", minHeight: "100vh" }}>
+      <div
+        style={{
+          maxWidth: "64rem",
+          margin: "0 auto",
+          backgroundColor: "#fff",
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+          borderRadius: "1rem",
+          padding: "2rem",
+        }}
+      >
+        <h1
+          style={{
+            textAlign: "center",
+            fontWeight: "800",
+            fontSize: "1.875rem",
+            marginBottom: "2rem",
+            color: "#3182ce",
+          }}
+        >
+          Job Scheduler
+        </h1>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1rem",
+            marginBottom: "2rem",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <label style={{ fontWeight: "600", fontSize: "1.125rem" }}>Number of Employees:</label>
             <input
               type="number"
               value={n}
               onChange={(e) => setN(Number(e.target.value))}
-              className="border border-gray-300 p-2 rounded w-20 text-center"
+              style={{
+                border: "1px solid #d1d5db",
+                padding: "0.5rem",
+                borderRadius: "0.25rem",
+                width: "5rem",
+                textAlign: "center",
+              }}
             />
           </div>
           <button
             onClick={() => createTimeTable(n)}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded"
+            style={{
+              backgroundColor: "#3b82f6",
+              color: "#fff",
+              fontWeight: "bold",
+              padding: "0.5rem 1.5rem",
+              borderRadius: "0.25rem",
+              border: "none",
+              cursor: "pointer",
+            }}
           >
             Generate Schedule
           </button>
         </div>
         {warning && (
-          <p className="text-red-500 font-semibold text-center mb-4">{warning}</p>
+          <p
+            style={{
+              color: "#ef4444",
+              fontWeight: "600",
+              textAlign: "center",
+              marginBottom: "1rem",
+            }}
+          >
+            {warning}
+          </p>
         )}
-        <hr className="my-6 border-t-2 border-gray-300" />
+        <hr style={{ margin: "1.5rem 0", borderTop: "2px solid #d1d5db" }} />
         {schedule.length > 0 && (
-          <div className="space-y-10">
-            <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Schedule</h2>
-              <table className="w-full border-collapse border border-gray-300 rounded-lg shadow">
-                <thead className="bg-blue-100">
+          <div>
+            <div style={{ marginBottom: "2.5rem" }}>
+              <h2
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "600",
+                  color: "#1f2937",
+                  marginBottom: "1rem",
+                }}
+              >
+                Schedule
+              </h2>
+              <table
+                style={{
+                  width: "100%",
+                  borderCollapse: "collapse",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "0.5rem",
+                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                }}
+              >
+                <thead style={{ backgroundColor: "#dbeafe" }}>
                   <tr>
-                    <th className="border p-3">Date</th>
-                    <th className="border p-3">Employee</th>
-                    <th className="border p-3">Shift</th>
+                    <th style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>Date</th>
+                    <th style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>Employee</th>
+                    <th style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>Shift</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-300">
+                <tbody>
                   {schedule.map((entry, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="border p-3">{entry.date}</td>
-                      <td className="border p-3">{entry.employee}</td>
-                      <td className="border p-3">{entry.shift}</td>
+                    <tr key={index} style={{ borderBottom: "1px solid #d1d5db" }}>
+                      <td style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>{entry.date}</td>
+                      <td style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>{entry.employee}</td>
+                      <td style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>{entry.shift}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <hr className="border-t-2 border-gray-300" />
-            {/* <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Individual Worker Schedules</h2>
+            <hr style={{ margin: "1.5rem 0", borderTop: "2px solid #d1d5db" }} />
+            <div style={{ marginBottom: "2.5rem" }}>
+              <h2
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "600",
+                  color: "#1f2937",
+                  marginBottom: "1rem",
+                }}
+              >
+                Individual Worker Schedules
+              </h2>
               {Object.entries(workerSchedules).map(([employee, shifts]) => (
-                <div key={employee} className="mb-6 p-4 bg-gray-50 shadow-md rounded-lg">
-                  <h3 className="font-semibold text-xl text-gray-800 mb-2">{employee}</h3>
-                  <table className="w-full border-collapse border border-gray-300 rounded-lg shadow">
-                    <thead className="bg-blue-100">
+                <div
+                  key={employee}
+                  style={{
+                    marginBottom: "1.5rem",
+                    padding: "1rem",
+                    backgroundColor: "#f9fafb",
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontSize: "1.25rem",
+                      fontWeight: "600",
+                      color: "#1f2937",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    {employee}
+                  </h3>
+                  <table
+                    style={{
+                      width: "100%",
+                      borderCollapse: "collapse",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "0.5rem",
+                      boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <thead style={{ backgroundColor: "#dbeafe" }}>
                       <tr>
-                        <th className="border p-3">Date</th>
-                        <th className="border p-3">Shift</th>
+                        <th style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>Date</th>
+                        <th style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>Shift</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-300">
+                    <tbody>
                       {shifts.map((entry, index) => (
-                        <tr key={index} className="hover:bg-gray-50">
-                          <td className="border p-3">{entry.date}</td>
-                          <td className="border p-3">{entry.shift}</td>
+                        <tr key={index} style={{ borderBottom: "1px solid #d1d5db" }}>
+                          <td style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>
+                            {entry.date}
+                          </td>
+                          <td style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>
+                            {entry.shift}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
               ))}
-            </div> */}
-
-            <div>
-              <WorkerSchedules workerSchedules={workerSchedules}/>
             </div>
-            <hr className="border-t-2 border-gray-300" />
+            <hr style={{ margin: "1.5rem 0", borderTop: "2px solid #d1d5db" }} />
             <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              <h2
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "600",
+                  color: "#1f2937",
+                  marginBottom: "1rem",
+                }}
+              >
                 Cumulative Work Hours
               </h2>
-              <table className="w-full border-collapse border border-gray-300 rounded-lg shadow">
-                <thead className="bg-blue-100">
+              <table
+                style={{
+                  width: "100%",
+                  borderCollapse: "collapse",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "0.5rem",
+                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                }}
+              >
+                <thead style={{ backgroundColor: "#dbeafe" }}>
                   <tr>
-                    <th className="border p-3">Employee</th>
-                    <th className="border p-3">Hours Worked</th>
+                    <th style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>Employee</th>
+                    <th style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>Hours Worked</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-300">
+                <tbody>
                   {Object.entries(hoursWorked).map(([employee, hours]) => (
-                    <tr key={employee} className="hover:bg-gray-50">
-                      <td className="border p-3">{employee}</td>
-                      <td className="border p-3">{hours} hours</td>
+                    <tr key={employee} style={{ borderBottom: "1px solid #d1d5db" }}>
+                      <td style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>{employee}</td>
+                      <td style={{ border: "1px solid #d1d5db", padding: "0.75rem" }}>{hours} hours</td>
                     </tr>
                   ))}
                 </tbody>
@@ -195,5 +313,5 @@ export default function JobScheduler() {
       </div>
     </div>
   );
-  
+    
 }
