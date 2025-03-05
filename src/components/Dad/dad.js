@@ -77,9 +77,9 @@ export default function JobScheduler() {
 
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Job Scheduler</h1>
+      <h1 className="text-xl font-bold mb-4">Anil Thakur Slot Scheduler</h1>
       <div className="mb-4">
-        <label className="mr-2">Number of Employees:</label>
+        <label className="mr-2">Number of Doctors:</label>
         <input
           type="number"
           value={n}
