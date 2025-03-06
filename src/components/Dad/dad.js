@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
 import _ from "lodash";
-import WorkerSchedules from "./workerScheduler";
 
 export default function JobScheduler() {
   const [n, setN] = useState(9);
