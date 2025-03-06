@@ -11,85 +11,116 @@ export default function JobScheduler() {
   const [warning, setWarning] = useState("");
 
   const createTimeTable = (n) => {
-    if (n < 2) {
-      setWarning("At least 2 employees are required to cover shifts.");
+    // At least 3 employees are needed to cover day, night, and on‑call shifts.
+    if (n < 3) {
+      setWarning("At least 3 employees are required to cover all shifts.");
       return;
     }
-  
+    
     setWarning(""); // Clear previous warnings
   
-    // Shift labels with their respective timings and durations:
-    const DAY_SHIFT = "Day (08:00 - 20:00)";      // 12h shift
-    const NIGHT_SHIFT = "Night (20:00 - 08:00)";    // 12h shift
-    const ON_CALL = "On-Call (24h)";                // 24h shift
+    // Define shift labels and durations:
+    const DAY_SHIFT = "Day (08:00 - 20:00)";    // 12h shift
+    const NIGHT_SHIFT = "Night (20:00 - 08:00)";  // 12h shift
+    const ON_CALL = "On-Call (24h)";              // 24h shift
   
     const startDate = moment();
     const numDays = 28;
     const sampleNames = [
-      "Changu", "Mangu", "Bittu", "Idli", "Paaji", "Gappu", 
-      "Maggi", "Fanta", "Frooty", "Mithu", "Lappu", "Mario", 
-      "Noni", "Manu"
+      "Changu", "Mangu", "Bittu", "Idli", "Paaji", 
+      "Gappu", "Maggi", "Fanta", "Frooty", "Mithu", 
+      "Lappu", "Mario", "Noni", "Manu", "Jalebi",
+      "Barfi", "Sandesh", "Peda", "Rasgulla", "Halwa",
+      "Falooda", "Rabri", "Papdi", "Kheer", "Chikki"
     ];
+    // Randomly select n unique employees.
     let employees = _.shuffle(_.sampleSize(sampleNames, n));
-  
-    // Initialize overall schedule, each worker's schedule, and cumulative working hours.
-    let schedule = [];
-    let workerSchedules = _.zipObject(employees, Array(n).fill([]));
-    let lastNightShift = _.zipObject(employees, Array(n).fill(null));
-    let hoursWorked = _.zipObject(employees, Array(n).fill(0));
     
+    // Initialize overall schedule and each employee's personal schedule.
+    let schedule = [];
+    let workerSchedules = {};
+    employees.forEach(emp => (workerSchedules[emp] = []));
+  
+    // Track when an employee last worked a night shift (they must be off the next day).
+    // Initialize with a value that guarantees availability on day 0.
+    let lastNightShift = {};
+    employees.forEach(emp => (lastNightShift[emp] = -100));
+  
+    // Counters for the number of assignments per shift type and total working hours.
+    let dayCount = {};
+    let nightCount = {};
+    let onCallCount = {};
+    let totalHours = {};
+    employees.forEach(emp => {
+      dayCount[emp] = 0;
+      nightCount[emp] = 0;
+      onCallCount[emp] = 0;
+      totalHours[emp] = 0;
+    });
+  
+    // Loop over each day and assign shifts.
     for (let i = 0; i < numDays; i++) {
       let date = startDate.clone().add(i, "days").format("YYYY-MM-DD");
-      // Exclude employees who worked a night shift the previous day.
-      let availableEmployees = [...employees].filter(emp => lastNightShift[emp] !== i - 1);
-      // Sort employees by cumulative hours worked for fair distribution.
-      availableEmployees = _.sortBy(availableEmployees, (emp) => hoursWorked[emp]);
-  
-      // We need 3 employees per day: 1 for day shift, 1 for night shift, and 1 for on-call.
-      if (availableEmployees.length < 3) {
-        setWarning("Not enough employees available for fair shift distribution.");
+      
+      // Build a list of employees available today (those who did not work a night shift yesterday).
+      let available = employees.filter(emp => lastNightShift[emp] !== i - 1);
+      if (available.length < 3) {
+        setWarning(`Not enough employees available on ${date} for fair distribution.`);
         return;
       }
-  
-      let dayWorker = availableEmployees.shift();
-      let nightWorker = availableEmployees.shift();
-      let onCallWorker = availableEmployees.shift();
-  
-      // Mark the night shift worker so they get the next day off.
-      lastNightShift[nightWorker] = i;
       
-      // Update cumulative hours:
-      // Day and Night shifts add 12h each; on-call adds 24h.
-      hoursWorked[dayWorker] += 12;
-      hoursWorked[nightWorker] += 12;
-      hoursWorked[onCallWorker] += 24;
-  
-      // Build the daily schedule.
+      // --- 1. Assign Day Shift ---
+      // Pick the employee with the fewest day assignments.
+      let minDay = Math.min(...available.map(emp => dayCount[emp]));
+      let dayCandidates = available.filter(emp => dayCount[emp] === minDay);
+      // Among these, choose the one with the smallest total hours.
+      let minTotalDay = Math.min(...dayCandidates.map(emp => totalHours[emp]));
+      let finalDayCandidates = dayCandidates.filter(emp => totalHours[emp] === minTotalDay);
+      let dayWorker = _.sample(finalDayCandidates);
+      // Update counts and total hours.
+      dayCount[dayWorker]++;
+      totalHours[dayWorker] += 12;
+      // Remove from today's pool.
+      available = available.filter(emp => emp !== dayWorker);
+      
+      // --- 2. Assign Night Shift ---
+      let minNight = Math.min(...available.map(emp => nightCount[emp]));
+      let nightCandidates = available.filter(emp => nightCount[emp] === minNight);
+      let minTotalNight = Math.min(...nightCandidates.map(emp => totalHours[emp]));
+      let finalNightCandidates = nightCandidates.filter(emp => totalHours[emp] === minTotalNight);
+      let nightWorker = _.sample(finalNightCandidates);
+      nightCount[nightWorker]++;
+      totalHours[nightWorker] += 12;
+      // Mark that this employee worked a night shift today so they get the next day off.
+      lastNightShift[nightWorker] = i;
+      available = available.filter(emp => emp !== nightWorker);
+      
+      // --- 3. Assign On‑Call Shift ---
+      let minOnCall = Math.min(...available.map(emp => onCallCount[emp]));
+      let onCallCandidates = available.filter(emp => onCallCount[emp] === minOnCall);
+      let minTotalOnCall = Math.min(...onCallCandidates.map(emp => totalHours[emp]));
+      let finalOnCallCandidates = onCallCandidates.filter(emp => totalHours[emp] === minTotalOnCall);
+      let onCallWorker = _.sample(finalOnCallCandidates);
+      onCallCount[onCallWorker]++;
+      totalHours[onCallWorker] += 24;
+      
+      // Record the assignments for the day.
       schedule.push({ date, employee: dayWorker, shift: DAY_SHIFT });
       schedule.push({ date, employee: nightWorker, shift: NIGHT_SHIFT });
       schedule.push({ date, employee: onCallWorker, shift: ON_CALL });
-  
-      // Build each employee's personal schedule.
-      workerSchedules[dayWorker] = [
-        ...workerSchedules[dayWorker],
-        { date, shift: DAY_SHIFT }
-      ];
-      workerSchedules[nightWorker] = [
-        ...workerSchedules[nightWorker],
-        { date, shift: NIGHT_SHIFT }
-      ];
-      workerSchedules[onCallWorker] = [
-        ...workerSchedules[onCallWorker],
-        { date, shift: ON_CALL }
-      ];
+      
+      // Also update each employee's personal schedule.
+      workerSchedules[dayWorker].push({ date, shift: DAY_SHIFT });
+      workerSchedules[nightWorker].push({ date, shift: NIGHT_SHIFT });
+      workerSchedules[onCallWorker].push({ date, shift: ON_CALL });
     }
     
-    // Update state with the generated schedule and cumulative working hours.
+    // Finally, update the state with the schedule, per-employee schedules, and cumulative working hours.
     setSchedule(schedule);
     setWorkerSchedules(workerSchedules);
-    setHoursWorked(hoursWorked);
+    setHoursWorked(totalHours);
   };
-  
+      
 
   return (
     <div style={{ padding: "1.5rem", backgroundColor: "#f7fafc", minHeight: "100vh" }}>
@@ -112,7 +143,7 @@ export default function JobScheduler() {
             color: "#3182ce",
           }}
         >
-          Job Scheduler
+          Anil Thakur Doctor Slot Scheduler
         </h1>
         <div
           style={{
@@ -125,7 +156,7 @@ export default function JobScheduler() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <label style={{ fontWeight: "600", fontSize: "1.125rem" }}>Number of Employees:</label>
+            <label style={{ fontWeight: "600", fontSize: "1.125rem" }}>Number of Doctors:</label>
             <input
               type="number"
               value={n}
