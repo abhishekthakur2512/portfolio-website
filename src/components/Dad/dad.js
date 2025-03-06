@@ -27,7 +27,9 @@ export default function JobScheduler() {
     const sampleNames = [
       "Changu", "Mangu", "Bittu", "Idli", "Paaji", "Gappu", 
       "Maggi", "Fanta", "Frooty", "Mithu", "Lappu", "Mario", 
-      "Noni", "Manu"
+      "Noni", "Manu", "Gulabo", "Jalebi", "Rasgulla", "Peda",
+      "Barfi", "Imarti", "Sandesh", "Sonu", "Chikki", "Kheer",
+      "Patisa", "Modak", "Ladoo"
     ];
     let employees = _.shuffle(_.sampleSize(sampleNames, n));
   
@@ -111,7 +113,7 @@ export default function JobScheduler() {
             color: "#3182ce",
           }}
         >
-          Job Scheduler
+          Anil Thakur Doctor Slot Scheduler
         </h1>
         <div
           style={{
@@ -124,7 +126,7 @@ export default function JobScheduler() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <label style={{ fontWeight: "600", fontSize: "1.125rem" }}>Number of Employees:</label>
+            <label style={{ fontWeight: "600", fontSize: "1.125rem" }}>Number of Doctors:</label>
             <input
               type="number"
               value={n}
